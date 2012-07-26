@@ -60,6 +60,9 @@
 #include <elf.h>
 #include <unistd.h>
 #include <errno.h>
+#ifdef HOSTOS_DARWIN
+#include <stdint.h>
+#endif
 
 extern int errno;
 

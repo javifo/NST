@@ -61,8 +61,12 @@ ifeq ($(ARCH),ppc)
 CROSS_COMPILE = powerpc-linux-
 endif
 ifeq ($(ARCH),arm)
+ifeq ($(HOSTOS),darwin)
+CROSS_COMPILE = arm-eabi-
+else
 #CROSS_COMPILE = arm-linux-
 CROSS_COMPILE = arm-none-linux-gnueabi-
+endif
 endif
 ifeq ($(ARCH),i386)
 ifeq ($(HOSTARCH),i386)
@@ -93,6 +97,15 @@ endif
 endif
 
 export	CROSS_COMPILE
+
+#########################################################################
+# define echo command depending on HOSTOS
+ifeq ($(HOSTOS),darwin)
+# I guess gecho command is in coreutils package of macports
+ECHO_CMD = gecho
+else
+ECHO_CMD = echo
+endif
 
 # load other configuration
 include $(TOPDIR)/config.mk
@@ -197,11 +210,11 @@ $(SUBDIRS):	depend
 		$(MAKE) -C $@ all
 
 version:
-		@echo -n "#define U_BOOT_VERSION \"U-Boot " > $(VERSION_FILE); \
-		echo -n "$(U_BOOT_VERSION)" >> $(VERSION_FILE); \
-		echo -n $(shell $(CONFIG_SHELL) $(TOPDIR)/tools/setlocalversion \
+		@$(ECHO_CMD) -n "#define U_BOOT_VERSION \"U-Boot " > $(VERSION_FILE); \
+		$(ECHO_CMD) -n "$(U_BOOT_VERSION)" >> $(VERSION_FILE); \
+		$(ECHO_CMD) -n $(shell $(CONFIG_SHELL) $(TOPDIR)/tools/setlocalversion \
 			 $(TOPDIR)) >> $(VERSION_FILE); \
-		echo "\"" >> $(VERSION_FILE)
+		$(ECHO_CMD) "\"" >> $(VERSION_FILE)
 
 gdbtools:
 		$(MAKE) -C tools/gdb || exit 1

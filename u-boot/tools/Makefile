@@ -86,6 +86,13 @@ HOST_CFLAGS = -traditional-cpp -Wall
 HOST_LDFLAGS =-multiply_defined suppress
 HOST_ENVIRO_CFLAGS = -traditional-cpp
 
+# Define macro for OSX on Intel
+else
+ifeq ($(HOSTOS),darwin)
+HOST_CFLAGS = -Wall -pedantic -DHOSTOS_DARWIN
+HOST_LDFLAGS =
+HOST_ENVIRO_CFLAGS =
+ 
 else
 ifeq ($(HOSTOS)-$(HOSTARCH),netbsd-ppc)
 HOST_CFLAGS = -Wall -pedantic
@@ -99,6 +106,7 @@ else
 HOST_CFLAGS = -Wall -pedantic
 HOST_LDFLAGS =
 HOST_ENVIRO_CFLAGS =
+endif
 endif
 endif
 
