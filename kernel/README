@@ -1,1 +1,10 @@
-25.7.2012 - mkimage is needed for building uImage of kernel. OSX build has to be enabled
+25.7.2012 - mkimage is needed for building uImage of kernel. 
+
+Add toolchain to path
+export PATH=$PATH:/Volumes/NST/prebuilt/darwin-x86/toolchain/arm-eabi-4.4.3/bin
+
+Configure NST kernel with
+make omap3621_gossamer_evt1c_defconfig ARCH=arm CROSS_COMPILE=arm-eabi-
+
+Build kernel with
+make uImage ARCH=arm CROSS_COMPILE=arm-eabi-
