@@ -1,1 +1,5 @@
-Built with arm-eabi-4.4.3 toolchain taken from Cyanogenmod repository (branch ics)
+Doesn't boot ---> Built with arm-eabi-4.4.3 toolchain taken from Cyanogenmod repository (branch ics)
+
+For building with android ndk r7 toolchain...
+make omap3621_gossamer_config ARCH=arm CROSS_COMPILE=arm-linux-androideabi-
+make ARCH=arm CROSS_COMPILE=arm-linux-androideabi-

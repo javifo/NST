@@ -1,5 +1,6 @@
 25.7.2012 - mkimage is needed for building uImage of kernel. 
 
+==== (doesn't boot - CM toolchain )
 Add toolchain to path
 export PATH=$PATH:/Volumes/NST/prebuilt/darwin-x86/toolchain/arm-eabi-4.4.3/bin
 
@@ -8,3 +9,15 @@ make omap3621_gossamer_evt1c_defconfig ARCH=arm CROSS_COMPILE=arm-eabi-
 
 Build kernel with
 make uImage ARCH=arm CROSS_COMPILE=arm-eabi-
+
+
+
+==== Android NDK R7 toolchain
+Add toolchain to path
+export PATH=$PATH:/Volumes/NST/android-ndk-r7/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin
+
+Configure NST kernel with
+make omap3621_gossamer_evt1c_defconfig ARCH=arm CROSS_COMPILE=arm-linux-androideabi-
+
+Build kernel with
+make uImage ARCH=arm CROSS_COMPILE=arm-linux-androideabi-
