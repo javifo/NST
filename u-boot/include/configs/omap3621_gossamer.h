@@ -320,6 +320,9 @@ extern unsigned int boot_flash_type;
 #define CONFIG_CMD_CLOCK_INFO_CPU	1
 
 #if CFG_HUSH_PARSER
+/* Activate usb console */
+  #define CONFIG_PREBOOT          "setenv stdout usbtty;setenv stdin usbtty"
+
   #define CONFIG_BOOTCOMMAND \
 "run autodetectmmc;" \
 "if run loadbootscript; then " \
@@ -357,7 +360,7 @@ extern unsigned int boot_flash_type;
 "vcom=-1990" \
 	"\0" \
 \
-"commonbootargs=console=ttyS0,115200n8 initrd rw init=/init vram=16M video=omap3epfb:mode=800x600x16x14x270x0,pmic=${epd_pmic},vcom=${vcom} androidboot.console=ttyS0" \
+"commonbootargs=console=ttyUSB0,115200n8 initrd rw init=/init vram=16M video=omap3epfb:mode=800x600x16x14x270x0,pmic=${epd_pmic},vcom=${vcom} androidboot.console=ttyUSB0" \
 	"\0" \
 \
 "setbootargs=setenv indirectba setenv bootargs $commonbootargs;" \
